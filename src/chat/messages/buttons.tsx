@@ -8,7 +8,7 @@ export default class ButtonsType extends MessageType {
     render(props: IMessageTypeProps) {
         const message = props.message;
 
-        const buttons = message.buttons.map((button) => {
+        const buttons = message.buttons?.map((button) => {
             if (button.type === 'postback') {
                 return <div class="btn" onClick={() => this.performAction(button)}>
                     {button.title}
@@ -37,6 +37,6 @@ export default class ButtonsType extends MessageType {
                 additionalParameters: msg.additionalParameters,
                 from: 'chatbot'
             });
-        }, null);
+        }, () => {});
     }
 }

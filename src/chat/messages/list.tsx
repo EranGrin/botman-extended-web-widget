@@ -19,11 +19,11 @@ export default class ListType extends MessageType {
     render(props: IMessageTypeProps) {
         const message = props.message;
 
-        const globalButtons = message.globalButtons.map((button: IButton) => {
+        const globalButtons = message.globalButtons?.map((button: IButton) => {
             return this.getButton(button);
         });
 
-        const lists = message.elements.map((element) => {
+        const lists = message.elements?.map((element) => {
             const elementButtons = element.buttons.map((button: IButton) => {
                 return this.getButton(button);
             });
@@ -56,6 +56,6 @@ export default class ListType extends MessageType {
                 additionalParameters: msg.additionalParameters,
                 from: 'chatbot'
             });
-        }, null);
+        }, () => {});
     }
 }

@@ -3,8 +3,8 @@ import { IAttachment, IMessage } from './../typings';
 
 class BotMan {
 
-	userId: string;
-	chatServer: string;
+	userId!: string;
+	chatServer!: string;
 
     setUserId(userId: string) {
         this.userId = userId;
@@ -14,7 +14,7 @@ class BotMan {
         this.chatServer = chatServer;
     }
 
-    callAPI = (text: string, interactive = false, attachment: IAttachment = null, perMessageCallback: Function, callback: Function) => {
+    callAPI = (text: string, interactive = false, attachment: IAttachment | null = null, perMessageCallback: Function, callback: Function) => {
     	let data = new FormData();
     	const postData: { [index: string] : string|Blob } = {
     		driver: 'web',

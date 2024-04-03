@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import {IMessage, IMessageHolderProps, IMessageTypeState} from '../typings';
-import * as dateFormat from "dateformat";
+import dateFormat from "dateformat";
 import TextType from "./messages/text";
 import ActionType from "./messages/action";
 import TypingIndicator from "./messages/typing-indicator";
@@ -22,7 +22,9 @@ export default class MessageHolder extends Component<IMessageHolderProps, any> {
 
     scrollToBottom = () => {
         const messageArea = document.getElementById('messageArea');
-        messageArea.scrollTop = messageArea.scrollHeight;
+        if (messageArea !== null) {
+            messageArea.scrollTop = messageArea.scrollHeight;
+        }
     };
 
     componentDidMount() {
@@ -46,7 +48,7 @@ export default class MessageHolder extends Component<IMessageHolderProps, any> {
     render(props: IMessageHolderProps) {
         const currentTime = new Date();
         const message = props.message;
-        const msgTime = new Date(message.time);
+        const msgTime = new Date(message.time || Date.now());
         const MessageComponent = messageTypes[message.type] || TextType;
         const { messageHandler, conf } = this.props;
 
@@ -57,28 +59,27 @@ export default class MessageHolder extends Component<IMessageHolderProps, any> {
         const calculatedTimeout = props.calculatedTimeout;
 
         return (
-            <li data-message-id={message.id} class={message.from} style={styles}>
-                <div class="msg">
+            <li data-message-id={message.id} className={message.from} style={styles}>
+                <div className="msg">
                     <MessageComponent onVisibilityChange={this.messageVisibilityChange}
                                       message={message}
                                       timeout={calculatedTimeout}
                                       messageHandler={messageHandler}
                                       conf={conf}
                     />
-                    {(props.conf.displayMessageTime) ?
-                        <div class="time">
+                    {props.conf && props.conf.displayMessageTime ? (
+                        <div className="time">
                             {
                                 currentTime.getMilliseconds() - msgTime.getMilliseconds() < dayInMillis ?
                                     dateFormat(msgTime, props.conf.timeFormat) :
                                     dateFormat(msgTime, props.conf.dateTimeFormat)
                             }
                         </div>
-                        :
-                        ''
-                    }
+                    ) : ''}
                 </div>
             </li>
         );
+        
     }
 
 }

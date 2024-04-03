@@ -8,7 +8,7 @@ export default class Action extends MessageType {
     render(props: IMessageTypeProps) {
         const message = props.message;
 
-        const buttons = message.actions.map((action: IAction) => {
+        const buttons = message.actions?.map((action: IAction) => {
             return <div class="btn" onClick={() => this.performAction(action)}>
                 {action.text}
             </div>;

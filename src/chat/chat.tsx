@@ -1,4 +1,4 @@
-import { h, Component } from "preact";
+import { h, Component, RenderableProps } from "preact";
 import MessageArea from "./message-area";
 import { botman } from "./botman";
 import {IMessage, IConfiguration} from "../typings";
@@ -7,8 +7,8 @@ export default class Chat extends Component<IChatProps, IChatState> {
 
     [key: string]: any
     botman: any;
-    input: HTMLInputElement;
-    textarea: HTMLInputElement;
+    input!: HTMLInputElement;
+    textarea!: HTMLInputElement;
 
     constructor(props: IChatProps) {
         super(props);
@@ -70,7 +70,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
         this.say(text, false);
     }
 
-    render({}, state: IChatState) {
+    render(props?: RenderableProps<IChatProps, any>, state: Readonly<IChatState> = this.state, context?: any) {
         return (
             <div>
                 <div id="messageArea">
@@ -114,7 +114,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
                             class="textarea"
                             placeholder={this.props.conf.placeholderText}
                             ref={input => {
-                                this.textarea = input as HTMLInputElement;
+                                this.textarea = input as unknown as HTMLInputElement;
                             }}
                             autofocus
                         />

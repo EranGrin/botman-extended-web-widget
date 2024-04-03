@@ -23,7 +23,7 @@ export default class ChatAction extends Component<IChatActionProps, any> {
                 additionalParameters: msg.additionalParameters,
                 from: 'chatbot'
             });
-        }, null);
+        }, () => {});
     }
 }
 

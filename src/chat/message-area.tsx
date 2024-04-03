@@ -11,7 +11,7 @@ import MessageHolder from "./message-holder";
 export default class MessageArea extends Component<IMessageAreaProps, any> {
 
     render(props: IMessageAreaProps, {}) {
-    	const styleChat = 'height:'+(props.conf.wrapperHeight-60)+'px;';
+    	const styleChat = props.conf.wrapperHeight ? 'height:'+(props.conf.wrapperHeight-60)+'px;' : '';
 
 		let calculatedTimeout = 0;
     	return (
@@ -25,7 +25,7 @@ export default class MessageArea extends Component<IMessageAreaProps, any> {
 							conf={props.conf}
 						/>;
 
-						calculatedTimeout += message.timeout * 1000;
+						calculatedTimeout += (message.timeout || 0) * 1000;
 
 						return listElement;
     				})

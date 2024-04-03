@@ -27,7 +27,7 @@ export default class TextType extends MessageType {
                 )}
                 {attachment && attachment.type === "video" ? (
                     <video
-                        height={props.conf.videoHeight}
+                        height={props?.conf?.videoHeight}
                         controls
                         autoPlay={false}
                         style="max-width: 100%;"

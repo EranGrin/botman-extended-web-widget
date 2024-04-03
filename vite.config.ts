@@ -9,4 +9,15 @@ export default defineConfig({
     
   },
   plugins: [preact()],
+  css: {
+    // If you use PostCSS or preprocessors, configure them here
+    modules: {
+      localsConvention: 'camelCase',
+    },
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true, // If you're using Less and need JS in your styles
+      },
+    },
+  },
 })

@@ -28,9 +28,8 @@ function injectChat() {
     let root = document.createElement('div');
     root.id = 'botmanChatRoot';
     document.getElementsByTagName('body')[0].appendChild(root);
-    debugger;
 
-    console.log('conf', conf),
+
     render(
         <Chat
             userId={conf.userId}
