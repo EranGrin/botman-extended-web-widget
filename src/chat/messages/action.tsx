@@ -1,4 +1,3 @@
-import { h, Component } from 'preact';
 import {botman} from './../botman';
 import MessageType from "./messagetype";
 import { IMessageTypeProps, IAction, IMessage } from '../../typings';
@@ -36,6 +35,6 @@ export default class Action extends MessageType {
                 additionalParameters: msg.additionalParameters,
                 from: 'chatbot'
             });
-        }, null);
+        }, () => {});
     }
 }

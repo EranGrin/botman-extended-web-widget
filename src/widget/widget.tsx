@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {h, Component} from 'preact';
+import {Component} from 'preact';
 import ChatFrame from './chat-frame';
 import ChatFloatingButton from './chat-floating-button';
 import ChatTitleMsg from './chat-title-msg';
@@ -187,6 +187,6 @@ declare global {
 }
 
 // FIXME: toGMTString is deprecated
-interface IDate extends Date {
-  toUTCString(): string;
-}
+// interface IDate extends Date {
+//   toUTCString(): string;
+// }

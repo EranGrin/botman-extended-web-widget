@@ -1,4 +1,4 @@
-import {h, render} from 'preact';
+import {render} from 'preact';
 import Widget from './widget';
 import {defaultConfiguration} from './configuration';
 import {IConfiguration} from "../typings";

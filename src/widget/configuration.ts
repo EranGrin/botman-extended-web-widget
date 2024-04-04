@@ -27,7 +27,7 @@ export const defaultConfiguration: IConfiguration = {
     userId: '',
     alwaysUseFloatingButton: false,
     useEcho: false,
-    echoChannel: (userId: string) => '',
+    echoChannel: (_userId: string) => '',
     echoConfiguration: {},
     echoEventName: '.message.created',
     echoChannelType: 'private'

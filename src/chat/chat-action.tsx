@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import {botman} from './botman';
 import { IAction, IMessage } from '../typings';
 

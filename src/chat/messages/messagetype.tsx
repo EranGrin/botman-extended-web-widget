@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import {IMessageTypeProps, IMessageTypeState} from '../../typings';
 
 export default abstract class MessageType extends Component<IMessageTypeProps, IMessageTypeState> {

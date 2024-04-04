@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import {IMessage, IMessageHolderProps, IMessageTypeState} from '../typings';
 import dateFormat from "dateformat";
 import TextType from "./messages/text";

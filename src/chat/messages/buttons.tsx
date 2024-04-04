@@ -1,4 +1,3 @@
-import { h, Component } from 'preact';
 import {botman} from './../botman';
 import { IButton, IMessage, IMessageTypeProps } from '../../typings';
 import MessageType from "./messagetype";

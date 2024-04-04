@@ -1,5 +1,5 @@
-import { h, Component } from 'preact';
-import {desktopClosedMessageStyle, desktopIntroMessageStyle, desktopClosedMessageAvatarStyle, closedChatAvatarImageStyle} from './style';
+import { Component } from 'preact';
+import { desktopClosedMessageAvatarStyle, closedChatAvatarImageStyle} from './style';
 
 export default class ChatTitleMsg extends Component<any, any> {
 

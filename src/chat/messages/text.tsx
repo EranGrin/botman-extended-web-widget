@@ -1,4 +1,3 @@
-import { h, Component } from "preact";
 import MessageType from "./messagetype";
 import { IMessageTypeProps } from "../../typings";
 

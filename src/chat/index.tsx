@@ -1,11 +1,9 @@
-import { h, render } from 'preact';
+import { render } from 'preact';
 import Chat from './chat';
 import { IConfiguration } from '../typings';
 
-console.log('test');
 
 if (window.attachEvent) {
-    console.log('test');
 
     window.attachEvent('onload', injectChat);
 } else {
@@ -16,7 +14,6 @@ let conf = {} as IConfiguration;
 
 const confString = getUrlParameter('conf');
 if (confString) {
-    console.log('test');
     try {
         conf = JSON.parse(confString);
     } catch (e) {

@@ -1,4 +1,4 @@
-import { h, Component, RenderableProps } from "preact";
+import { Component, RenderableProps } from "preact";
 import MessageArea from "./message-area";
 import { botman } from "./botman";
 import {IMessage, IConfiguration} from "../typings";
@@ -70,7 +70,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
         this.say(text, false);
     }
 
-    render(props?: RenderableProps<IChatProps, any>, state: Readonly<IChatState> = this.state, context?: any) {
+    render(_props?: RenderableProps<IChatProps, any>, state: Readonly<IChatState> = this.state) {
         return (
             <div>
                 <div id="messageArea">
@@ -148,7 +148,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
         }
     };
 
-    handleSendClick = (e: MouseEvent) => {
+    handleSendClick = () => {
         this.say(this.textarea.value);
 
         // Reset input value

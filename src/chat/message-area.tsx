@@ -1,11 +1,5 @@
-import { h, Component } from 'preact';
-import * as dateFormat from 'dateformat';
-import ActionType from './messages/action';
-import TextType from "./messages/text";
-import ButtonsType from "./messages/buttons";
-import ListType from "./messages/list";
-import {IConfiguration, IMessage, IMessageTypeState} from '../typings';
-import TypingIndicator from "./messages/typing-indicator";
+import { Component } from 'preact';
+import {IConfiguration, IMessage} from '../typings';
 import MessageHolder from "./message-holder";
 
 export default class MessageArea extends Component<IMessageAreaProps, any> {

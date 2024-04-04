@@ -1,10 +1,10 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import {mobileClosedMessageAvatarStyle, closedChatAvatarImageStyle} from './style';
 import { IConfiguration } from '../typings';
 
 export default class ChatFloatingButton extends Component<IChatFloatingButtonProps, any> {
 
-    render({onClick, conf}: IChatFloatingButtonProps, {}) {
+    render({conf}: IChatFloatingButtonProps, {}) {
         return (
             <div style={{position: 'relative', cursor: 'pointer'}} onClick={this.props.onClick}>
                 <div
