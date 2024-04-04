@@ -26,17 +26,28 @@ export default class Api {
     }
 
     callChatWidget(payload: Object) {
-        if (this.isOpen()) {
-            (document.getElementById('chatBotManFrame') as HTMLIFrameElement).contentWindow.postMessage(payload, '*');
-        } else {
-            try {
-                this.open();
-                setTimeout(() => {
-                    (document.getElementById('chatBotManFrame') as HTMLIFrameElement).contentWindow.postMessage(payload, '*');
-                }, 750);
-            } catch (e) {
-                console.error(e);
+        const iframeElement = document.getElementById('chatBotManFrame') as HTMLIFrameElement | null;
+        if (iframeElement && iframeElement.contentWindow) {
+            // Only try to post message if the iframe and its contentWindow are available
+            if (this.isOpen()) {
+                iframeElement.contentWindow.postMessage(payload, '*');
+            } else {
+                try {
+                    this.open();
+                    setTimeout(() => {
+                        // Re-check to ensure the element is still valid and present
+                        const recheckedIframeElement = document.getElementById('chatBotManFrame') as HTMLIFrameElement | null;
+                        if (recheckedIframeElement && recheckedIframeElement.contentWindow) {
+                            recheckedIframeElement.contentWindow.postMessage(payload, '*');
+                        }
+                    }, 750);
+                } catch (e) {
+                    console.error(e);
+                }
             }
+        } else {
+            // Handle the case where the iframe does not exist
+            console.error("Iframe 'chatBotManFrame' not found.");
         }
     }
 

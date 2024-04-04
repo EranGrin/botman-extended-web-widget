@@ -17,15 +17,17 @@ import Echo from "laravel-echo";
 
 export default class Widget extends Component<any, IWidgetState> {
 
-    Echo: Echo;
+    Echo!: Echo;
 
     state: IWidgetState;
 
     constructor() {
         super();
-        this.state.isChatOpen = false;
-        this.state.pristine = true;
-        this.state.wasChatOpened = false;
+        this.state = {
+            isChatOpen: false,
+            pristine: true,
+            wasChatOpened: false,
+        };
     }
 
     componentDidMount() {

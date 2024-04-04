@@ -9,10 +9,10 @@ if (window.attachEvent) {
     window.addEventListener('load', injectChat, false);
 }
 
-function getUrlParameter(name: string, defaults = '') {
+function getUrlParameter(name: string, url: string, defaults = '') {
     name = name.replace(/[[]/, '\\[').replace(/[]]/, '\\]');
     let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    let results = regex.exec(document.getElementById('botmanWidget').getAttribute('src'));
+    let results = regex.exec(url);
     return results === null ? defaults : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
@@ -31,7 +31,8 @@ function injectChat() {
 
     let settings = {};
     try {
-        settings = JSON.parse(getUrlParameter('settings', '{}'));
+        const botmanWidgetElementSrc = document.getElementById('botmanWidget')?.getAttribute('src') || '';
+        settings = JSON.parse(getUrlParameter('settings', botmanWidgetElementSrc, '{}'));
     } catch (e) { }
 
     const dynamicConf = window.botmanWidget || {} as IConfiguration; // these configuration are loaded when the chat frame is opened
