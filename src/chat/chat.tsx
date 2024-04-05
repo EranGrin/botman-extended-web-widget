@@ -16,10 +16,12 @@ export default class Chat extends Component<IChatProps, IChatState> {
         this.botman = botman;
         this.botman.setUserId(this.props.userId);
         this.botman.setChatServer(this.props.conf.chatServer);
-        //this.state.messages = [];
-        //this.state.replyType = ReplyType.Text;
-        this.setState({ messages : [] });
-        this.setState({ replyType : ReplyType.Text });
+        this.botman.setRequestHeaders(this.props.conf.requestHeaders);
+
+        this.state = {
+            messages: [],
+            replyType: ReplyType.Text
+        };
     }
 
     componentDidMount() {
@@ -35,7 +37,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
             try {
                 this[event.data.method](...event.data.params);
             } catch (e) {
-                //
+                
             }
         });
     }

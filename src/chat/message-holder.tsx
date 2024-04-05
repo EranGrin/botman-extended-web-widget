@@ -44,7 +44,6 @@ export default class MessageHolder extends Component<IMessageHolderProps, any> {
             this.forceUpdate();
         }
     };
-
     render(props: IMessageHolderProps) {
         const currentTime = new Date();
         const message = props.message;

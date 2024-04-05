@@ -9,6 +9,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="assets/css/chat-no-iframe.css">
 
     <!-- Styles -->
     <style>
@@ -57,8 +58,10 @@
 
 <script>
     var botmanWidget = {
-        chatServer: 'https://php-uk-conference-2018.marcelpociot.de/botman',
-        frameEndpoint: 'chat.html'
+        chatServer: 'https://next-civil-rooster.ngrok-free.app/api/botman',
+        requestHeaders: {
+            'X-Shop-Domain': '1234'
+        }
     };
 </script>
 <script type="module" id="botmanWidget" src='widget/index.tsx'></script>

@@ -4,7 +4,6 @@ import { IConfiguration } from '../typings';
 
 
 if (window.attachEvent) {
-
     window.attachEvent('onload', injectChat);
 } else {
     window.addEventListener('load', injectChat, false);
@@ -13,6 +12,7 @@ if (window.attachEvent) {
 let conf = {} as IConfiguration;
 
 const confString = getUrlParameter('conf');
+
 if (confString) {
     try {
         conf = JSON.parse(confString);
