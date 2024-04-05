@@ -132,5 +132,7 @@ export interface IConfiguration {
 
     echoEventName: string,
 
-    init?: Function
+    init?: Function,
+
+    requestHeaders: object | string,
 }

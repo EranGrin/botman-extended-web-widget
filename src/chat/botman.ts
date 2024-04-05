@@ -5,6 +5,7 @@ class BotMan {
 
 	userId!: string;
 	chatServer!: string;
+	requestHeaders!: string;
 
     setUserId(userId: string) {
         this.userId = userId;
@@ -14,8 +15,14 @@ class BotMan {
         this.chatServer = chatServer;
     }
 
+	setRequestHeaders(requestHeaders: string) {
+		this.requestHeaders = requestHeaders;
+	}
+
     callAPI = (text: string, interactive = false, attachment: IAttachment | null = null, perMessageCallback: Function, callback: Function) => {
     	let data = new FormData();
+		console.log(this.requestHeaders);
+		const headers =  typeof this.requestHeaders === 'string' ? JSON.parse(this.requestHeaders) : this.requestHeaders;
     	const postData: { [index: string] : string|Blob } = {
     		driver: 'web',
     		userId: this.userId,
@@ -26,7 +33,11 @@ class BotMan {
 
     	Object.keys(postData).forEach(key => data.append(key, postData[key]));
 
-    	axios.post(this.chatServer, data).then(response => {
+    	axios.post(
+			this.chatServer,
+			data,
+			{headers}
+		).then(response => {
     		const messages = response.data.messages || [];
 
 			if (perMessageCallback) {
