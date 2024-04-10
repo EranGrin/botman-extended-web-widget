@@ -18,6 +18,7 @@
 ## Quick Links
 
 > - [Overview](#overview)
+> - [Demo](#demo)
 > - [Features](#features)
 > - [Installation](#installation)
 > - [Usage](#usage)
