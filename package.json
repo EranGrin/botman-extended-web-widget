@@ -31,7 +31,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start-vue-example": "cd spa-examples/vue && yarn dev"
   },
   "dependencies": {
     "axios": "^1.6.8",

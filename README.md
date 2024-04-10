@@ -36,6 +36,12 @@ The BotMan Extended Web Widget is an enhanced version of the BotMan Web Widget t
 
 ---
 
+## Demo
+
+- **HTML implentaion**: Check out this [HTML Example](https://stackblitz.com/~/github.com/EranGrin/botman-extended-web-widget?initialPath=/src/demo.html)
+- **VUE SPA implentaion**: Check out this [Vue SPA Example](https://stackblitz.com/edit/vue-web-component-wrapper?startScript=start-vue-example)
+
+
 ## Features
 
 - **No Iframe Required**: Leverage modern web technologies to embed your chatbot.
@@ -59,6 +65,7 @@ yarn
 ```bash
 yarn add botman-extended-web-widget
 ```
+
 
 ## Usage
 
