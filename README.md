@@ -69,6 +69,15 @@ yarn add botman-extended-web-widget
 
 
 ## Usage
+### JavaScript (default configuration)
+By default, the widget is rendered as a custom element utilizing Shadow DOM for encapsulation. Defualt styles are injected directly into the Shadow DOM for a seamless integration. To use the widget, simply import the module and initialize it with the URL of your chat server.
+```javascript
+import BotManWidget from 'botman-extended-web-widget';
+new BotManWidget({
+    chatServer: 'https://php-uk-conference-2018.marcelpociot.de/botman',
+});
+```
+
 
 ### HTML
 in your HTML file, add the following code:

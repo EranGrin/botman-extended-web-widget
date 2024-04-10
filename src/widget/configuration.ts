@@ -34,6 +34,6 @@ export const defaultConfiguration: IConfiguration = {
     requestHeaders: {},
     useChatAsIframe: false,
     useInAppCss: false,
-    useShadowDom: false,
+    useShadowDom: true,
     customStylesInjection: '',
 };
