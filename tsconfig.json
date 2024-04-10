@@ -8,7 +8,10 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
     "paths": {
+      "*": ["types/*"],
+      "botman-extended-web-widget": ["./types/botman-extended-web-widget"],
       "react": ["./node_modules/preact/compat/"],
       "react-dom": ["./node_modules/preact/compat/"]
     },
