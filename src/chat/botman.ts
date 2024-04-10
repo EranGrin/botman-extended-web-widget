@@ -21,7 +21,6 @@ class BotMan {
 
     callAPI = (text: string, interactive = false, attachment: IAttachment | null = null, perMessageCallback: Function, callback: Function) => {
     	let data = new FormData();
-		console.log(this.requestHeaders);
 		const headers =  typeof this.requestHeaders === 'string' ? JSON.parse(this.requestHeaders) : this.requestHeaders;
     	const postData: { [index: string] : string|Blob } = {
     		driver: 'web',

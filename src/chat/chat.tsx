@@ -2,6 +2,8 @@ import { Component, RenderableProps } from "preact";
 import MessageArea from "./message-area";
 import { botman } from "./botman";
 import {IMessage, IConfiguration} from "../typings";
+import chatCss from '../assets/css/chat.css?raw';
+
 
 export default class Chat extends Component<IChatProps, IChatState> {
 
@@ -22,9 +24,20 @@ export default class Chat extends Component<IChatProps, IChatState> {
             messages: [],
             replyType: ReplyType.Text
         };
+
     }
 
     componentDidMount() {
+        // Inject custom styles
+        this.applyCustomStyles(this.props.conf.customStylesInjection);
+
+        // Inject the chat CSS into the head
+        if (this.props.conf.useInAppCss && this.props.conf.useChatAsIframe) {
+            const styleElem = document.createElement('style');
+            styleElem.textContent = chatCss;
+            document.head.appendChild(styleElem);
+        }
+
         if (!this.state.messages.length && this.props.conf.introMessage) {
             this.writeToMessages({
                 text: this.props.conf.introMessage,
@@ -40,6 +53,13 @@ export default class Chat extends Component<IChatProps, IChatState> {
                 
             }
         });
+    }
+
+    applyCustomStyles(customStylesInjection: string | undefined) {
+        const styleElem = document.createElement('style');
+        const customStyles = customStylesInjection?.replace(/;/g, ' !important;');
+        styleElem.textContent = `${customStyles}`;
+        document.head.appendChild(styleElem);
     }
 
     sayAsBot(text: string) {
@@ -72,7 +92,9 @@ export default class Chat extends Component<IChatProps, IChatState> {
         this.say(text, false);
     }
 
-    render(_props?: RenderableProps<IChatProps, any>, state: Readonly<IChatState> = this.state) {
+
+    render(_props?: RenderableProps<any>, state: Readonly<IChatState> = this.state) {
+
         return (
             <div>
                 <div id="messageArea">
@@ -88,6 +110,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
                         id="userText"
                         class="textarea"
                         type="text"
+                        autoComplete="off"
                         placeholder={this.props.conf.placeholderText}
                         ref={input => {
                             this.input = input as HTMLInputElement;

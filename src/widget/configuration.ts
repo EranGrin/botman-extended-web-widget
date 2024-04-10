@@ -31,5 +31,9 @@ export const defaultConfiguration: IConfiguration = {
     echoConfiguration: {},
     echoEventName: '.message.created',
     echoChannelType: 'private',
-    requestHeaders: ''
+    requestHeaders: {},
+    useChatAsIframe: false,
+    useInAppCss: false,
+    useShadowDom: false,
+    customStylesInjection: '',
 };

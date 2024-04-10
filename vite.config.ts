@@ -1,66 +1,39 @@
 import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
-import { resolve } from 'path'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  // root: 'src',
+
+  base: './',
   server: {
     open: '/src/demo.html'
     
   },
-  plugins: [preact()],
+  plugins: [
+    preact(),
+  ],
   css: {
-    // If you use PostCSS or preprocessors, configure them here
     modules: {
       localsConvention: 'camelCase',
+      scopeBehaviour: 'global',
     },
     preprocessorOptions: {
       less: {
-        javascriptEnabled: true, // If you're using Less and need JS in your styles
+        javascriptEnabled: true,
       },
     },
   },
-  // build: {
-  //   rollupOptions: {
-  //     input: {
-  //       // main: resolve(__dirname, 'index.html'),
-  //       // Assuming 'widget' and 'chat' are the names of your entry points for HTML files
-  //       widget: resolve(__dirname, 'src/widget/index.tsx'),
-  //       chat: resolve(__dirname, 'src/chat/index.tsx'),
-  //     },
-  //     output: {
-  //       // Set output structure and naming convention here
-  //       entryFileNames: 'js/[name].js',
-  //       chunkFileNames: 'js/[name].js',
-  //       assetFileNames: 'assets/[name].[ext]',
-  //     },
-  //   },
-  // },
-  // build: {
-  //   sourcemap: true,
-  //   minify: false,
-  //   lib: {
-  //     entry: 'src/widget/index.tsx',
-  //     name: 'MyPreactLibrary',
-  //     formats: ['es', 'umd', 'cjs'],
-  //     fileName: (format) => `my-preact-library.${format}.js`
-  //   },
-  // }
   build: {
     rollupOptions: {
+      preserveEntrySignatures: "allow-extension",
       input: {
-        widget: 'src/widget/index.tsx', // Path to widget entry
-        chat: 'src/chat/index.tsx', // Path to chat entry
+        widget: 'src/widget/index.tsx',
+        chat: 'src/chat/index.tsx',
       },
       output: {
-        // Define how the output files are named
         entryFileNames: `[name].js`,
-        chunkFileNames: `[name].js`,
-        assetFileNames: `[name].[ext]`
-      }
+        assetFileNames: `[name].[ext]`,
+      },
     },
-    // Keeping source maps for better debugging support
-    sourcemap: true,
-  }
+  },
+
 })

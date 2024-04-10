@@ -3,6 +3,7 @@ import Chat from './chat';
 import { IConfiguration } from '../typings';
 
 
+
 if (window.attachEvent) {
     window.attachEvent('onload', injectChat);
 } else {

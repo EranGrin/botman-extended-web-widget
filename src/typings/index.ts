@@ -134,5 +134,13 @@ export interface IConfiguration {
 
     init?: Function,
 
-    requestHeaders: object | string,
+    requestHeaders?: object | string,
+
+    useChatAsIframe?: boolean,
+
+    useInAppCss?: boolean,
+
+    useShadowDom?: boolean,
+
+    customStylesInjection?: string,
 }
