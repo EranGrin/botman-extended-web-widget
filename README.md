@@ -39,8 +39,8 @@ The BotMan Extended Web Widget is an enhanced version of the BotMan Web Widget t
 
 ## Demo
 
-- **HTML implentaion**: Check out this [HTML Example](https://stackblitz.com/~/github.com/EranGrin/botman-extended-web-widget?initialPath=/src/demo.html)
-- **VUE SPA implentaion**: Check out this [Vue SPA Example](https://stackblitz.com/~/github.com/EranGrin/botman-extended-web-widget?startScript=start-vue-example)
+- **HTML Implementation**: Check out this <a href="https://stackblitz.com/~/github.com/EranGrin/botman-extended-web-widget?initialPath=/src/demo.html" target="_blank">HTML Example</a>
+- **VUE SPA Implementation**: Check out this <a href="https://stackblitz.com/~/github.com/EranGrin/botman-extended-web-widget?startScript=start-vue-example" target="_blank">Vue SPA Example</a>
 
 
 ## Features
