@@ -10,8 +10,7 @@ defineProps({
 })
 onMounted(() => {
   new BotmanWidget({
-    chatServer: 'https://yourserver.com/chat',
-    frameEndpoint: './chat.html',
+    chatServer: 'https://php-uk-conference-2018.marcelpociot.de/botman',
     useChatAsIframe: false,
     useInAppCss: false,
     useShadowDom: true
