@@ -5,7 +5,6 @@
     "type": "git",
     "url": "https://github.com/EranGrin/botman-extended-web-widget"
   },
-  "private": true,
   "version": "1.0.0",
   "description": "A BotMan frontend package for the web widget",
   "type": "module",
