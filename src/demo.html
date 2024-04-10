@@ -35,6 +35,7 @@
 
         .content {
             text-align: center;
+            width: 60%;
         }
 
         .logo {
@@ -55,16 +56,16 @@
         </p>
         <p>
             Key enhancements include:
-            <ul>
-                <li>Flexible integration options: embed as a normal DOM element, within an iframe, or encapsulated within custom elements using shadow DOM.</li>
-                <li>Direct CSS injection into the widget with the 'useInAppCss' option, simplifying style management by avoiding separate CSS files and enhancing style encapsulation.</li>
-                <li>Enhanced security features, such as the capability to send custom headers with requests for authentication purposes.</li>
-                <li>Optimized interaction with the chat server, allowing direct invocation by the widget and reducing redundant server calls.</li>
-                <li>Customizable appearance and behavior through inline CSS, offering greater control and quicker style adjustments.</li>
-                <li>The 'customStylesInjection' feature allows for advanced styling options by enabling users to pass custom CSS rules as strings. These rules are then applied with higher specificity, overriding default styles and ensuring that the widget visually aligns with the host site's branding and design preferences.</li>
+            <ul style="text-align: left;">
+                <li>Multiple integration options: as a DOM element, within an iframe, or using shadow DOM.</li>
+                <li>Direct CSS injection with 'useInAppCss' for streamlined style management and improved encapsulation.</li>
+                <li>Advanced security features like custom headers for enhanced authentication.</li>
+                <li>Easy customization with inline CSS for immediate style adjustments.</li>
+                <li>Styling control via 'customStylesInjection', allowing for custom CSS rules to override default styles.</li>
             </ul>
             This version also transitions to using Vite for build optimizations and TypeScript.
         </p>
+        
 </div>
 
 
@@ -101,10 +102,9 @@
         frameEndpoint: './chat.html',
         useChatAsIframe: false,
         useInAppCss: false,
-        useShadowDom: false
+        useShadowDom: true
     });
 </script>
-
 
 </body>
 </html>
