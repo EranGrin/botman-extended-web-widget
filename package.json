@@ -1,8 +1,33 @@
 {
-  "name": "preact-test",
+  "name": "botman-extended-web-widget",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EranGrin/vue3-web-component-wrapper/tree/main/plugin"
+  },
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A BotMan frontend package for the web widget",
   "type": "module",
+  "main": "dist/widget.js",
+  "module": "dist/widget.js",
+  "exports": {
+    ".": {
+      "import": "./dist/widget.js",
+      "require": "./dist/widget.js"
+    }
+  },
+  "keywords": [
+    "botman",
+    "botman-extended",
+    "botman-extended-web-widget",
+    "botman-web-widget",
+    "botman-frontend",
+    "botman-frontend-package",
+    "botman-frontend-web-widget",
+    "botman-frontend-web-widget-package",
+    "botman-frontend-web-widget-package"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
