@@ -143,4 +143,6 @@ export interface IConfiguration {
     useShadowDom?: boolean,
 
     customStylesInjection?: string,
+
+    autoInit?: boolean,
 }

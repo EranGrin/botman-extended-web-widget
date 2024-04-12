@@ -98,6 +98,7 @@ in your HTML file, add the following code:
         useChatAsIframe: true,
         useInAppCss: false,
         useShadowDom: false,
+        autoInit: true,
         requestHeaders: {
             'X-Shop-Domain': '1234'
         },
@@ -151,13 +152,14 @@ The BotMan Extended Web Widget can be configured using the following options:
 Orginal options can be found [here](https://botman.io/2.0/web-widget)
 
 Here are the new options:
-| Option | Type | Description |
-| --- | --- | --- |
-| useChatAsIframe | boolean | Whether to use the chat as an iframe. |
-| useInAppCss | boolean | Whether to use in-app CSS. |
-| useShadowDom | boolean | Whether to use shadow DOM. |
-| requestHeaders | object | Custom headers for authentication. |
-| customStylesInjection | string | Custom styles to inject into the widget. |
+| Option | Type | Description | default | notes |
+| --- | --- | --- | --- | --- |
+| useChatAsIframe | boolean | Whether to use the chat as an iframe. | false |
+| useInAppCss | boolean | Whether to use in-app inline CSS. | false |
+| useShadowDom | boolean | Whether to use shadow DOM. | true | css is always injected |
+| requestHeaders | object | Custom headers for authentication. | {} |
+| customStylesInjection | string | Custom styles to inject into the widget. | '' | 
+| autoInit | boolean | Whether to automatically initialize the widget. use if load in html | false | 
 
 ## Customization
 

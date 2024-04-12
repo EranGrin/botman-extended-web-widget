@@ -112,12 +112,13 @@ function initializeWidgetFromGlobal() {
     new BotmanWidget(config);
 }
 
-if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', initializeWidgetFromGlobal);
-} else {
-    initializeWidgetFromGlobal();
+if ( window?.botmanWidget?.autoInit === true ) {
+    if (document.readyState === 'loading') {
+        window.addEventListener('DOMContentLoaded', initializeWidgetFromGlobal);
+    } else {
+        initializeWidgetFromGlobal();
+    }
 }
-
 declare global {
     interface Window {
         botmanWidget?: IConfiguration;

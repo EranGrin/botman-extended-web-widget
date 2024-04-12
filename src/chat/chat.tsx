@@ -28,15 +28,9 @@ export default class Chat extends Component<IChatProps, IChatState> {
     }
 
     componentDidMount() {
-        // Inject custom styles
-        this.applyCustomStyles(this.props.conf.customStylesInjection);
-
-        // Inject the chat CSS into the head
-        if (this.props.conf.useInAppCss && this.props.conf.useChatAsIframe) {
-            const styleElem = document.createElement('style');
-            styleElem.textContent = chatCss;
-            document.head.appendChild(styleElem);
-        }
+        this.setupStyles();
+        this.setupMessageListener();
+    
 
         if (!this.state.messages.length && this.props.conf.introMessage) {
             this.writeToMessages({
@@ -45,14 +39,82 @@ export default class Chat extends Component<IChatProps, IChatState> {
                 from: "chatbot"
             });
         }
-        // Add event listener for widget API
-        window.addEventListener("message", (event: MessageEvent) => {
-            try {
-                this[event.data.method](...event.data.params);
-            } catch (e) {
-                
+    }
+
+    componentWillUnmount() {
+        this.removeMessageListener();
+    }
+
+    setupMessageListener() {
+        const { useShadowDom, useChatAsIframe } = this.props.conf;
+    
+        // Shadow DOM with Iframe
+        if (useShadowDom && useChatAsIframe) {
+            if (window.self !== window.top) {
+                window.addEventListener("message", this.handleMessageEvent);
+                return;
+            } else {
+                console.error("Shadow DOM with iframe setup failed: Iframe or shadow root not found.");
             }
-        });
+        }
+    
+        // Only Shadow DOM
+        if (useShadowDom && !useChatAsIframe) {
+            const shadowHost = document.querySelector('botman-widget');
+            if (shadowHost && shadowHost instanceof HTMLElement && shadowHost.shadowRoot) {
+                console.log("Shadow DOM setup");
+                console.log(shadowHost);
+                shadowHost.shadowRoot.addEventListener("message", this.handleMessageEvent as any);
+                return;
+            }
+            console.error("Shadow DOM setup failed: Shadow root not found or base element does not support shadow DOM.");
+        }
+    
+        // Only Iframe
+        if (useChatAsIframe && !useShadowDom) {
+            if (window.self !== window.top) {
+                window.addEventListener("message", this.handleMessageEvent);
+                return;
+            } else {
+                console.error("Iframe setup failed: Iframe not found.");
+            }
+        }
+    
+        // Direct DOM (neither Iframe nor Shadow DOM)
+        if (!useShadowDom && !useChatAsIframe) {
+            console.log("Direct DOM setup");
+            const eventContainer = document.getElementById('botmanWidgetRoot')
+            if (eventContainer instanceof HTMLElement) {
+                eventContainer?.addEventListener("message", this.handleMessageEvent as any);
+                return;
+            }
+        }
+    }
+    
+    handleMessageEvent = (event: MessageEvent) => {
+        const { useChatAsIframe } = this.props.conf;
+        const payloadKey = useChatAsIframe ? 'data' : 'detail';
+        try {
+            const { method, params } = event[payloadKey as 'data' || 'detail'];
+            if (method && this[method]) {
+                this[method](...params);
+            }
+        } catch (e) {
+            //console.error("Error handling message event:", e);
+        }
+    }
+    
+
+    setupStyles() {
+        // Inject custom styles
+        this.applyCustomStyles(this.props.conf.customStylesInjection);
+
+        // Inject the chat CSS into the head if the chat is used as an iframe and in-app CSS is enabled
+        if (this.props.conf.useInAppCss && this.props.conf.useChatAsIframe) {
+            const styleElem = document.createElement('style');
+            styleElem.textContent = chatCss;
+            document.head.appendChild(styleElem);
+        }
     }
 
     applyCustomStyles(customStylesInjection: string | undefined) {
@@ -69,6 +131,7 @@ export default class Chat extends Component<IChatProps, IChatState> {
             from: "chatbot"
         });
     }
+
 
     say(text: string, showMessage = true) {
         const message: IMessage = {
@@ -164,14 +227,13 @@ export default class Chat extends Component<IChatProps, IChatState> {
         );
     }
 
-    handleKeyPress = (e: KeyboardEvent) => {
-        if (e.keyCode === 13 && this.input.value.replace(/\s/g, "")) {
-            this.say(this.input.value);
 
-            // Reset input value
-            this.input.value = "";
+    handleKeyPress = (e: KeyboardEvent) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            this.say(this.input.value);
+            this.input.value = ""; // Reset input after sending
         }
-    };
+    }
 
     handleSendClick = () => {
         this.say(this.textarea.value);
@@ -181,27 +243,27 @@ export default class Chat extends Component<IChatProps, IChatState> {
     };
 
     static generateUuid() {
-        let uuid = '', ii;
-        for (ii = 0; ii < 32; ii += 1) {
-            switch (ii) {
-                case 8:
-                case 20:
-                    uuid += '-';
-                    uuid += (Math.random() * 16 | 0).toString(16);
-                    break;
-                case 12:
-                    uuid += '-';
-                    uuid += '4';
-                    break;
-                case 16:
-                    uuid += '-';
-                    uuid += (Math.random() * 4 | 8).toString(16);
-                    break;
-                default:
-                    uuid += (Math.random() * 16 | 0).toString(16);
+        return Array.from({ length: 36 }).map((_, i) => {
+            if (i === 8 || i === 13 || i === 18 || i === 23) return '-';
+            if (i === 14) return '4';  // UUID version 4
+            return (i === 19 ? (Math.random() * 4 | 8) : (Math.random() * 16 | 0)).toString(16);
+        }).join('');
+    }
+
+    removeMessageListener() {
+        const { useShadowDom, useChatAsIframe } = this.props.conf;
+         // Only Iframe
+        if (useChatAsIframe && !useShadowDom) {
+            const iframe = document.getElementById('chatBotManFrame');
+            if (iframe instanceof HTMLIFrameElement && iframe.contentWindow) {
+                iframe.contentWindow.removeEventListener("message", this.handleMessageEvent);
             }
         }
-        return uuid;
+        
+        // Direct DOM (neither Iframe nor Shadow DOM)
+        if (!useShadowDom && !useChatAsIframe) {
+            window.removeEventListener("message", this.handleMessageEvent);
+        }
     }
 
 	writeToMessages = (msg: IMessage) => {

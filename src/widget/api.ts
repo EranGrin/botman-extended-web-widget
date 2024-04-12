@@ -26,29 +26,38 @@ export default class Api {
     }
 
     callChatWidget(payload: Object) {
-        const iframeElement = document.getElementById('chatBotManFrame') as HTMLIFrameElement | null;
-        if (iframeElement && iframeElement.contentWindow) {
-            // Only try to post message if the iframe and its contentWindow are available
+
+        const sendPayload = (targetWindow: Window) => {
             if (this.isOpen()) {
-                iframeElement.contentWindow.postMessage(payload, '*');
+                targetWindow.postMessage(payload, '*');
             } else {
-                try {
-                    this.open();
-                    setTimeout(() => {
-                        // Re-check to ensure the element is still valid and present
-                        const recheckedIframeElement = document.getElementById('chatBotManFrame') as HTMLIFrameElement | null;
-                        if (recheckedIframeElement && recheckedIframeElement.contentWindow) {
-                            recheckedIframeElement.contentWindow.postMessage(payload, '*');
-                        }
-                    }, 750);
-                } catch (e) {
-                    console.error(e);
-                }
+                this.open();
+                setTimeout(() => {
+                    targetWindow.postMessage(payload, '*');
+                }, 750);  // Ensures the widget is open before sending the message
             }
+        };
+    
+        // Try to find an iframe, whether in shadow DOM or not
+        const iframeElement = document.querySelector('#chatBotManFrame') as HTMLIFrameElement | null || 
+                              document.querySelector('botman-widget')?.shadowRoot?.querySelector('#chatBotManFrame') as HTMLIFrameElement | null;
+    
+        if (iframeElement && iframeElement.contentWindow) {
+            sendPayload(iframeElement.contentWindow);
         } else {
-            // Handle the case where the iframe does not exist
-            console.error("Iframe 'chatBotManFrame' not found.");
+            // No iframe, check for direct access scenarios
+            const chatWidget = document.querySelector('botman-widget')?.shadowRoot || 
+                               document.getElementById('botmanWidgetRoot'); // Assuming 'botmanWidgetRoot' is the ID for direct DOM integrations
+            if (chatWidget) {  
+                chatWidget.dispatchEvent(new CustomEvent('message', { detail: payload }));
+            } else {
+                console.error("No chat interface found.");
+            }
         }
+    }
+
+    checkIfShadowDom() {
+        this.widget.props.useShadowDom;
     }
 
     writeToMessages(message: IMessage) {

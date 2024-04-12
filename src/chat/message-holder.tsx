@@ -21,6 +21,15 @@ const messageTypes = {
 export default class MessageHolder extends Component<IMessageHolderProps, any> {
 
     scrollToBottom = () => {
+        const hostElement = document.querySelector('botman-widget');
+        if (hostElement && hostElement.shadowRoot) {
+            const messageArea = hostElement.shadowRoot.getElementById('messageArea');
+            if (messageArea !== null) {
+                messageArea.scrollTop = messageArea.scrollHeight;
+            }
+            return
+        }
+
         const messageArea = document.getElementById('messageArea');
         if (messageArea !== null) {
             messageArea.scrollTop = messageArea.scrollHeight;
@@ -59,23 +68,31 @@ export default class MessageHolder extends Component<IMessageHolderProps, any> {
 
         return (
             <li data-message-id={message.id} className={message.from} style={styles}>
-                <div className="msg">
-                    <MessageComponent onVisibilityChange={this.messageVisibilityChange}
-                                      message={message}
-                                      timeout={calculatedTimeout}
-                                      messageHandler={messageHandler}
-                                      conf={conf}
-                    />
-                    {props.conf && props.conf.displayMessageTime ? (
-                        <div className="time">
-                            {
-                                currentTime.getMilliseconds() - msgTime.getMilliseconds() < dayInMillis ?
-                                    dateFormat(msgTime, props.conf.timeFormat) :
-                                    dateFormat(msgTime, props.conf.dateTimeFormat)
-                            }
-                        </div>
-                    ) : ''}
-                </div>
+                    { (message.type as string) === 'typing_indicator' 
+                        ? (<MessageComponent onVisibilityChange={this.messageVisibilityChange}
+                            message={message}
+                            timeout={calculatedTimeout}
+                            messageHandler={messageHandler}
+                            conf={conf}
+                            />)
+                        :(<div className="msg">
+                            <MessageComponent onVisibilityChange={this.messageVisibilityChange}
+                                            message={message}
+                                            timeout={calculatedTimeout}
+                                            messageHandler={messageHandler}
+                                            conf={conf}
+                            />
+                            {props.conf && props.conf.displayMessageTime ? (
+                                <div className="time">
+                                    {
+                                        currentTime.getMilliseconds() - msgTime.getMilliseconds() < dayInMillis ?
+                                            dateFormat(msgTime, props.conf.timeFormat) :
+                                            dateFormat(msgTime, props.conf.dateTimeFormat)
+                                    }
+                                </div>
+                            ) : ''}
+                        </div>)
+                    }
             </li>
         );
         

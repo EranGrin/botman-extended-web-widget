@@ -36,4 +36,5 @@ export const defaultConfiguration: IConfiguration = {
     useInAppCss: false,
     useShadowDom: true,
     customStylesInjection: '',
+    autoInit: false,
 };
