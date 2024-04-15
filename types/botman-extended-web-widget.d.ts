@@ -59,6 +59,7 @@ interface Configuration {
     echoConfiguration?: any,
     echoEventName?: string,
     init?: Function,
+    autoInit?: boolean,
     requestHeaders?: object | string,
     useChatAsIframe?: boolean,
     useInAppCss?: boolean,
@@ -76,4 +77,4 @@ declare class BotmanWidget {
 }
 
 export as namespace BotmanWidget;
-export = BotmanWidget;
+export default BotmanWidget;
