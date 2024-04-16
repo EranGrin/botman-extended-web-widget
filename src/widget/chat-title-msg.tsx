@@ -9,7 +9,8 @@ export default class ChatTitleMsg extends Component<any, any> {
                 style={{
                     position: 'relative', 
                     cursor: 'pointer', 
-                }} 
+                }}
+                onClick={this.props.onClick}
             >               
             <div
                     className="desktop-closed-message-avatar"
