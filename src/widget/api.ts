@@ -64,9 +64,6 @@ export default class Api {
         }
     }
 
-    checkIfShadowDom() {
-        this.widget.props.useShadowDom;
-    }
 
     writeToMessages(message: IMessage) {
         this.callChatWidget({

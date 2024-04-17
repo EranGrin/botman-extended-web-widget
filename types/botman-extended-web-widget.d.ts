@@ -1,3 +1,4 @@
+import { IMessage } from '../src/typings';
 interface Configuration {
     /**
      * The URL of the BotMan route / server to use.
@@ -58,7 +59,6 @@ interface Configuration {
     echoChannelType?: string,
     echoConfiguration?: any,
     echoEventName?: string,
-    init?: Function,
     autoInit?: boolean,
     requestHeaders?: object | string,
     useChatAsIframe?: boolean,
@@ -66,9 +66,23 @@ interface Configuration {
     useShadowDom?: boolean,
     customStylesInjection?: string,
   }
+
+  interface BotmanChatWidget {
+    writeToMessages(message: IMessage): void;
+    sayAsBot(text: string): void;
+    say(text: string): void;
+    whisper(text: string): void;
+    isChatOpen: boolean;
+    wasChatOpened: boolean;
+    toggle(): void;
+    close(): void;
+    open(): void;
+    isOpen(): boolean;
+  }
 declare global {
   interface Window {
     BotmanWidget: typeof BotmanWidget;
+    botmanChatWidget: BotmanChatWidget;
   }
 }
 
