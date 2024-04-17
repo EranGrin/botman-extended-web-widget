@@ -21,6 +21,14 @@ export default class Api {
         this.widget.toggle();
     }
 
+    get isChatOpen() {
+        return this.widget.state.isChatOpen === true;
+    }
+
+    get wasChatOpened() {
+        return this.widget.state.wasChatOpened === true;
+    }
+
     isOpen() {
         return this.widget.state.isChatOpen === true;
     }

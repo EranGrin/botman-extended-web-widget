@@ -9,7 +9,7 @@
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/license-MIT-green" alt="License MIT">
-	<img src="https://img.shields.io/badge/version-1.1.5-blue" alt="version 1.1.5">
+	<img src="https://img.shields.io/badge/version-1.1.6-blue" alt="version 1.1.6">
 	<img src="https://img.shields.io/badge/maintained-yes-brightgreen" alt="maintained yes">
 </p>
 
@@ -159,7 +159,21 @@ Here are the new options:
 | useShadowDom | boolean | Whether to use shadow DOM. | true | css is always injected |
 | requestHeaders | object | Custom headers for authentication. | {} |
 | customStylesInjection | string | Custom styles to inject into the widget. | '' | 
-| autoInit | boolean | Whether to automatically initialize the widget. use if load in html | false | 
+| autoInit | boolean | Whether to automatically initialize the widget. use if load in html | false |
+
+## reactiv chat open / close state
+```javascript
+    var wasChatOpened = false; // Flag to track if the chat was opened
+    window.addEventListener('chatOpenStateChange', function(event) {
+        // event.detail = {isOpen: true} or {isOpen: false}
+        if (event.detail.isOpen && !wasChatOpened) {
+            // This block will only execute once, the first time the chat is opened
+            window.botmanChatWidget.whisper("start conversation");
+            wasChatOpened = true; // Set the flag to true after sending the message
+        }
+    });
+```
+
 
 ## Customization
 

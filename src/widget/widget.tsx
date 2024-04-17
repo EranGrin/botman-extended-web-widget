@@ -30,6 +30,12 @@ export default class Widget extends Component<any, IWidgetState> {
         };
     }
 
+    componentDidUpdate(_previousProps: Readonly<any>, previousState: Readonly<IWidgetState>, _snapshot: any): void {
+        if (this.state.isChatOpen !== previousState.isChatOpen) {
+            window.dispatchEvent(new CustomEvent('chatOpenStateChange', { detail: { isOpen: this.state.isChatOpen } }));
+        }
+    }
+
     componentDidMount() {
         window.botmanChatWidget = new Api(this);
 
