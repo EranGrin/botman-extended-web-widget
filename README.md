@@ -9,7 +9,7 @@
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/license-MIT-green" alt="License MIT">
-	<img src="https://img.shields.io/badge/version-1.1.7-blue" alt="version 1.1.7">
+	<img src="https://img.shields.io/badge/version-1.1.8-blue" alt="version 1.1.8">
 	<img src="https://img.shields.io/badge/maintained-yes-brightgreen" alt="maintained yes">
 </p>
 
@@ -160,6 +160,7 @@ Here are the new options:
 | requestHeaders | object | Custom headers for authentication. | {} |
 | customStylesInjection | string | Custom styles to inject into the widget. | '' | 
 | autoInit | boolean | Whether to automatically initialize the widget. use if load in html | false |
+| useLoader | boolean |  Whether to use a loader as a type indication until the server responds | false |
 
 ## reactiv chat open / close state
 ```javascript

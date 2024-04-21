@@ -1,11 +1,20 @@
 import { Component } from 'preact';
 import {IConfiguration, IMessage} from '../typings';
 import MessageHolder from "./message-holder";
+import { useEffect, useState } from 'preact/hooks';
+import { botman } from './botman';
 
 export default class MessageArea extends Component<IMessageAreaProps, any> {
 
     render(props: IMessageAreaProps, {}) {
     	const styleChat = props.conf.wrapperHeight ? 'height:'+(props.conf.wrapperHeight-60)+'px;' : '';
+
+		const [loading, setLoading] = useState(false);
+
+		useEffect(() => {
+            const unsubscribe = botman.subscribeLoadingChange(setLoading);
+            return unsubscribe;
+        }, []);
 
 		let calculatedTimeout = 0;
     	return (
@@ -24,6 +33,16 @@ export default class MessageArea extends Component<IMessageAreaProps, any> {
 						return listElement;
     				})
     			}
+				{
+					props.conf.useLoader && loading && (<li class="clearfix">
+						<div className="loading-dots">
+							<span className="dot"></span>
+							<span className="dot"></span>
+							<span className="dot"></span>
+						</div>
+					</li>)
+				}
+
     		</ol>
     	);
     }

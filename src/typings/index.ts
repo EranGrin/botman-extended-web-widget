@@ -145,4 +145,6 @@ export interface IConfiguration {
     customStylesInjection?: string,
 
     autoInit?: boolean,
+
+    useLoader?: boolean,
 }

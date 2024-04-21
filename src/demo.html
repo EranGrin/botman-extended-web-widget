@@ -99,16 +99,17 @@
 
 
 <script>
+    var shopName = 'eran-dev-3.myshopify.com';
     var botmanWidget = {
-        chatServer: 'https://the-server-of-your-botman-application.com/botman',
+        chatServer: 'https://next-civil-rooster.ngrok-free.app/api/botman',
         frameEndpoint: './chat.html',
         useChatAsIframe: false,
         useInAppCss: false,
         useShadowDom: true,
         autoInit: true,
-        requestHeaders: {
-            'X-Shop-Domain': '1234'
-        },
+        useLoader: true,
+        requestHeaders: 
+            { 'X-Shop-Name': btoa(shopName) },
         customStylesInjection:`
             /* with shadow dom and no iframe */
             .botmanWidgetRootInner > div:nth-child(2) {
