@@ -9,7 +9,7 @@
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/license-MIT-green" alt="License MIT">
-	<img src="https://img.shields.io/badge/version-1.2.1-blue" alt="version 1.2.1">
+	<img src="https://img.shields.io/badge/version-1.2.2-blue" alt="version 1.2.2">
 	<img src="https://img.shields.io/badge/maintained-yes-brightgreen" alt="maintained yes">
 </p>
 
@@ -180,6 +180,7 @@ Here are the new options:
 
 ## Customization
 
+### styles
 The BotMan Extended Web Widget can be customized using the `customStylesInjection` option. This option accepts a string containing CSS rules that will be injected into the widget. The following example demonstrates how to customize the widget's appearance:
 
 ```javascript
@@ -204,6 +205,22 @@ new BotManWidget({
         }
     `,
 });
+```
+
+### Actions
+The BotMan Extended Web Widget provides a actions type that allows you to add buttons to the chat window. In some cases, you may want to write the action text in the chat window. To do this, you can use the `additionalParameters` option to set the `isActionRespondVisible` parameter to `true`. The following example demonstrates how to add buttons to the chat window:
+
+```php
+    public function startConversation()
+        {
+            $question = Question::create('Do you need support or help with anything?')
+                ->fallback('Unable to ask question')
+                ->callbackId('ask_support')
+                ->addButtons([
+                    Button::create('Yes, I need help')->value('yes')->additionalParameters(['isActionRespondVisible' => true]),
+                    Button::create('No, thank you')->value('no')->additionalParameters(['isActionRespondVisible' => true]),
+                ]);
+        }
 ```
 
 

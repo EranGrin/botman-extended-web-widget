@@ -62,8 +62,6 @@ export default class Chat extends Component<IChatProps, IChatState> {
         if (useShadowDom && !useChatAsIframe) {
             const shadowHost = document.querySelector('botman-widget');
             if (shadowHost && shadowHost instanceof HTMLElement && shadowHost.shadowRoot) {
-                console.log("Shadow DOM setup");
-                console.log(shadowHost);
                 shadowHost.shadowRoot.addEventListener("message", this.handleMessageEvent as any);
                 return;
             }
@@ -82,7 +80,6 @@ export default class Chat extends Component<IChatProps, IChatState> {
     
         // Direct DOM (neither Iframe nor Shadow DOM)
         if (!useShadowDom && !useChatAsIframe) {
-            console.log("Direct DOM setup");
             const eventContainer = document.getElementById('botmanWidgetRoot')
             if (eventContainer instanceof HTMLElement) {
                 eventContainer?.addEventListener("message", this.handleMessageEvent as any);

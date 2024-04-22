@@ -64,6 +64,7 @@ export interface IButton {
 export interface IAction {
     text: string,
     value: string,
+    additional?: any,
 }
 
 export interface IConfiguration {
