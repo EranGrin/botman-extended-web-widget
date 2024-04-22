@@ -7,7 +7,6 @@ import TypingIndicator from "./messages/typing-indicator";
 import ListType from "./messages/list";
 import ButtonsType from "./messages/buttons";
 
-
 const dayInMillis = 60 * 60 * 24 * 1000;
 
 const messageTypes = {

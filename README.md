@@ -9,7 +9,7 @@
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/license-MIT-green" alt="License MIT">
-	<img src="https://img.shields.io/badge/version-1.2.3-blue" alt="version 1.2.3">
+	<img src="https://img.shields.io/badge/version-1.2.4-blue" alt="version 1.2.4">
 	<img src="https://img.shields.io/badge/maintained-yes-brightgreen" alt="maintained yes">
 </p>
 
@@ -206,6 +206,22 @@ new BotManWidget({
     `,
 });
 ```
+### Background Image
+To embed a custom background image to the chat window, you can use the `customStylesInjection` option to set the `background-image` property. The following example demonstrates how to add a background image to the chat window with vite speciel syntax:
+
+```javascript
+    import svgContent from '../assets/chat-background.svg?raw';
+    const encodedSvg = encodeURIComponent(svgContent);
+    new BotmanWidget({
+      customStylesInjection: `
+      .botmanWidgetRootInner > div:nth-child(2) {
+        background-image: url("data:image/svg+xml,${encodedSvg}");
+      }
+        `,
+    });
+```
+
+```javascript
 
 ### Actions
 The BotMan Extended Web Widget provides a actions type that allows you to add buttons to the chat window. In some cases, you may want to write the action text in the chat window. To do this, you can use the `additionalParameters` option to set the `isActionRespondVisible` parameter to `true`. The following example demonstrates how to add buttons to the chat window:
