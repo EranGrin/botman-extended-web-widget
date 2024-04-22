@@ -9,7 +9,7 @@
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/license-MIT-green" alt="License MIT">
-	<img src="https://img.shields.io/badge/version-1.2.0-blue" alt="version 1.2.0">
+	<img src="https://img.shields.io/badge/version-1.2.1-blue" alt="version 1.2.1">
 	<img src="https://img.shields.io/badge/maintained-yes-brightgreen" alt="maintained yes">
 </p>
 
@@ -99,6 +99,7 @@ in your HTML file, add the following code:
         useInAppCss: false,
         useShadowDom: false,
         autoInit: true,
+        useLoader: true,
         requestHeaders: {
             'X-Shop-Domain': '1234'
         },
@@ -129,6 +130,7 @@ new BotManWidget({
     useChatAsIframe: true,
     useInAppCss: false,
     useShadowDom: false,
+    useLoader: true,
     requestHeaders: {
         'X-Shop-Domain': '1234'
     },

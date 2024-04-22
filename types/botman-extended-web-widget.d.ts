@@ -65,6 +65,7 @@ interface Configuration {
     useInAppCss?: boolean,
     useShadowDom?: boolean,
     customStylesInjection?: string,
+    useLoader?: boolean,
   }
 
   interface BotmanChatWidget {
