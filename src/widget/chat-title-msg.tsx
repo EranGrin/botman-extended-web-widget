@@ -33,6 +33,7 @@ export default class ChatTitleMsg extends Component<any, any> {
                             <img
                                 src={conf.bubbleAvatarUrl}
                                 style={{...closedChatAvatarImageStyle}}
+                                alt="chat-bubble-avatar"
                             />: <div style={{ display: 'flex', alignItems: 'center' }}><br/>{conf.bubbleAvatarUrl}</div>)
                     }
                 </div>
