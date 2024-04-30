@@ -9,7 +9,7 @@
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/license-MIT-green" alt="License MIT">
-	<img src="https://img.shields.io/badge/version-1.2.7-blue" alt="version 1.2.7">
+	<img src="https://img.shields.io/badge/version-1.2.8-blue" alt="version 1.2.8">
 	<img src="https://img.shields.io/badge/maintained-yes-brightgreen" alt="maintained yes">
 </p>
 
@@ -158,11 +158,12 @@ Here are the new options:
 | --- | --- | --- | --- | --- |
 | useChatAsIframe | boolean | Whether to use the chat as an iframe. | false |
 | useInAppCss | boolean | Whether to use in-app inline CSS. | false |
-| useShadowDom | boolean | Whether to use shadow DOM. | true | css is always injected |
+| useShadowDom | boolean | Whether to use [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM). | true | css is always injected |
 | requestHeaders | object | Custom headers for authentication. | {} |
 | customStylesInjection | string | Custom styles to inject into the widget. | '' | 
 | autoInit | boolean | Whether to automatically initialize the widget. use if load in html | false |
 | useLoader | boolean |  Whether to use a loader as a type indication until the server responds | false |
+| sandboxAttributes | string |  The [sandbox attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#sandbox) for the iframe | '' | [Sandbox Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#sandbox) |
 
 ## reactiv chat open / close state
 ```javascript

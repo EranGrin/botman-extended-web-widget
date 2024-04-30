@@ -22,6 +22,7 @@ export default class ChatFrame extends Component<any, any> {
                     height={isMobile ? '94%' : '100%'}
                     frameBorder='0'
                     allowTransparency
+                    sandbox={config.sandboxAttributes}
                      />
             );
         }

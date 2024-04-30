@@ -66,6 +66,7 @@ interface Configuration {
     useShadowDom?: boolean,
     customStylesInjection?: string,
     useLoader?: boolean,
+    sandboxAttributes?: string,
   }
 
   interface BotmanChatWidget {

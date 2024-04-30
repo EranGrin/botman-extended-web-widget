@@ -148,4 +148,6 @@ export interface IConfiguration {
     autoInit?: boolean,
 
     useLoader?: boolean,
+
+    sandboxAttributes?: string,
 }
