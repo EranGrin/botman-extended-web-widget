@@ -5,7 +5,6 @@ import { IMessageTypeProps, IAction, IMessage } from '../../typings';
 export default class Action extends MessageType {
 
     render(props: IMessageTypeProps) {
-        console.log('props', props);
         const { message } = props;
 
         const buttons = message.actions?.map((action: IAction) => {
